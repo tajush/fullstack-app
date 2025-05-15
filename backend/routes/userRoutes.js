@@ -9,7 +9,7 @@ const User = mongoose.model('User', new mongoose.Schema({
 }));
 
 // GET: fetch users
-router.get('/api/users', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -19,7 +19,7 @@ router.get('/api/users', async (req, res) => {
 });
 
 // ✅ POST: add new user
-router.post('/api/users', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newUser = new User(req.body);
     await newUser.save();

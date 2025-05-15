@@ -10,8 +10,8 @@ app.use(cors());
 app.use(express.json());
 
 // Register the product routes and user routes
-app.use('/api', productRoutes); // All product routes prefixed with /api
-app.use('/api', userRoutes);    // All user routes prefixed with /api
+app.use('/api/products', productRoutes); // All product routes prefixed with /api
+app.use('/api/users', userRoutes);    // All user routes prefixed with /api
 
 
 // Connect to MongoDB
