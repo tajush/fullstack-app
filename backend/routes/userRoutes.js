@@ -1,14 +1,10 @@
+
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+const User = require('../models/User');
+const validateUser = require('../middleware/validateUser'); // 👈 import the middleware
 
-// Define or import the User model
-const User = mongoose.model('User', new mongoose.Schema({
-  name: String,
-  email: String,
-}));
-
-// GET: fetch users
+// GET users
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
@@ -18,8 +14,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ✅ POST: add new user
-router.post('/', async (req, res) => {
+// POST user with middleware
+router.post('/', validateUser, async (req, res) => {
   try {
     const newUser = new User(req.body);
     await newUser.save();
@@ -28,5 +24,4 @@ router.post('/', async (req, res) => {
     res.status(400).json({ error: 'Failed to add user' });
   }
 });
-
 module.exports = router;
