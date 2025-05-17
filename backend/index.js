@@ -4,11 +4,16 @@ const cors = require('cors');
 require('dotenv').config();
 const productRoutes = require('./routes/productRoutes'); // Import productRoutes
 const userRoutes = require('./routes/userRoutes'); // Import userRoutes
-
+const galleryRoutes = require('./routes/galleryRoutes');
+const path = require('path');
 const app = express();
 app.use(cors());
 app.use(express.json());
+// Serve static files from uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// API routes
+app.use('/api/gallery', galleryRoutes);
 // Register the product routes and user routes
 app.use('/api/products', productRoutes); // All product routes prefixed with /api
 app.use('/api/users', userRoutes);    // All user routes prefixed with /api
