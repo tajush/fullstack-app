@@ -5,8 +5,7 @@ backend/node_modules/
 # Logs
 *.log
 
-# dotenv
-.env
+
 
 # OS files
 .DS_Store
