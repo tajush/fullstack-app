@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/productRoutes'); // Import productRoutes
 const userRoutes = require('./routes/userRoutes'); // Import userRoutes
 const galleryRoutes = require('./routes/galleryRoutes');
@@ -18,7 +19,8 @@ app.use('/api/gallery', galleryRoutes);
 app.use('/api/products', productRoutes); // All product routes prefixed with /api
 app.use('/api/users', userRoutes);    // All user routes prefixed with /api
 
-
+// Routes
+app.use('/api/auth', authRoutes);
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB Connected'))
