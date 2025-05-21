@@ -79,6 +79,7 @@ export default function Home() {
   value={formData.password}
   onChange={handleChange}
   required
+  pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{6,}$"
 />
 
 
